@@ -1,16 +1,32 @@
-import { StyleSheet, View, TextInput, ImageBackground } from "react-native";
+import {
+	StyleSheet,
+	View,
+	TextInput,
+	ImageBackground,
+	Alert,
+} from "react-native";
+import { useRouter } from "expo-router";
 import PrimaryButton from "../components/PrimaryButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { navigate } from "expo-router/build/global-state/routing";
+
+const isValidNumber = (number: string) => {
+	const chosenNumber = Number.parseInt(number);
+	return !Number.isNaN(chosenNumber) && chosenNumber >= 1 && chosenNumber <= 99;
+};
 
 export default function App() {
+	const router = useRouter();
 	const [number, setNumber] = useState("");
 
 	const onConfirm = () => {
-		console.log("Confirm pressed");
-	};
-
-	const onReset = () => {
-		console.log("Reset pressed");
+		if (!isValidNumber(number)) {
+			Alert.alert("Invalid number", "Number has to be between 1 and 99", [
+				{ text: "Okay", style: "destructive", onPress: () => setNumber("") },
+			]);
+			return;
+		}
+		router.navigate("/game");
 	};
 
 	return (
@@ -29,7 +45,7 @@ export default function App() {
 					onChangeText={(text) => setNumber(text)}
 				/>
 				<View style={styles.buttonsConatiner}>
-					<PrimaryButton onPress={onReset}>Reset</PrimaryButton>
+					<PrimaryButton onPress={() => setNumber("")}>Reset</PrimaryButton>
 					<PrimaryButton onPress={onConfirm}>Confirm</PrimaryButton>
 				</View>
 			</View>

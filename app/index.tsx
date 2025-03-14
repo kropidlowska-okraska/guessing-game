@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import PrimaryButton from "../components/PrimaryButton";
-import { useEffect, useState } from "react";
-import { navigate } from "expo-router/build/global-state/routing";
+import { useState } from "react";
+import Colors from '../constants/colors';
 
 const isValidNumber = (number: string) => {
 	const chosenNumber = Number.parseInt(number);
@@ -59,14 +59,15 @@ const styles = StyleSheet.create({
 		width: "100%",
 	},
 	inputContainer: {
-		alignItems: "center",
+		justifyContent: 'center',
+		alignItems: 'center',
 		marginTop: 100,
 		marginHorizontal: 24,
 		padding: 16,
-		backgroundColor: "#3b021f",
+		backgroundColor: Colors.primary800,
 		borderRadius: 8,
 		elevation: 4,
-		shadowColor: "black",
+		shadowColor: 'black',
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 6,
 		shadowOpacity: 0.25,

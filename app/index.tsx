@@ -6,9 +6,9 @@ import {
 	Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
-import Colors from '../constants/colors';
+import Colors from "../constants/colors";
 import { useStore } from "../store";
 
 const isValidNumber = (number: string) => {
@@ -62,15 +62,15 @@ const styles = StyleSheet.create({
 		width: "100%",
 	},
 	inputContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
+		justifyContent: "center",
+		alignItems: "center",
 		marginTop: 100,
 		marginHorizontal: 24,
 		padding: 16,
 		backgroundColor: Colors.primary800,
 		borderRadius: 8,
 		elevation: 4,
-		shadowColor: 'black',
+		shadowColor: "black",
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 6,
 		shadowOpacity: 0.25,

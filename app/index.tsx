@@ -1,18 +1,36 @@
 import { StyleSheet, View, TextInput, ImageBackground } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import { useState } from "react";
 
 export default function App() {
+	const [number, setNumber] = useState("");
+
+	const onConfirm = () => {
+		console.log("Confirm pressed");
+	};
+
+	const onReset = () => {
+		console.log("Reset pressed");
+	};
+
 	return (
-		<ImageBackground source={require("../assets/images/background.png")} style={styles.backgroundImage} resizeMode="cover" imageStyle={{ opacity: 0.15 }}>
+		<ImageBackground
+			source={require("../assets/images/background.png")}
+			style={styles.backgroundImage}
+			resizeMode="cover"
+			imageStyle={{ opacity: 0.15 }}
+		>
 			<View style={styles.inputContainer}>
 				<TextInput
 					style={styles.numberInput}
 					maxLength={2}
 					keyboardType="number-pad"
+					value={number}
+					onChangeText={(text) => setNumber(text)}
 				/>
 				<View style={styles.buttonsConatiner}>
-					<PrimaryButton>Reset</PrimaryButton>
-					<PrimaryButton>Confirm</PrimaryButton>
+					<PrimaryButton onPress={onReset}>Reset</PrimaryButton>
+					<PrimaryButton onPress={onConfirm}>Confirm</PrimaryButton>
 				</View>
 			</View>
 		</ImageBackground>

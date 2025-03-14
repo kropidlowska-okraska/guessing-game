@@ -9,6 +9,7 @@ import { useRouter } from "expo-router";
 import PrimaryButton from "../components/PrimaryButton";
 import { useState } from "react";
 import Colors from '../constants/colors';
+import { useStore } from "../store";
 
 const isValidNumber = (number: string) => {
 	const chosenNumber = Number.parseInt(number);
@@ -18,6 +19,7 @@ const isValidNumber = (number: string) => {
 export default function App() {
 	const router = useRouter();
 	const [number, setNumber] = useState("");
+	const updateChosenNumber = useStore((state) => state.updateChosenNumber);
 
 	const onConfirm = () => {
 		if (!isValidNumber(number)) {
@@ -26,6 +28,7 @@ export default function App() {
 			]);
 			return;
 		}
+		updateChosenNumber(Number.parseInt(number));
 		router.navigate("/game");
 	};
 

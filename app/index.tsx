@@ -1,29 +1,35 @@
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, ImageBackground } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
 export default function App() {
 	return (
-		<View style={styles.inputContainer}>
-			<TextInput
-				style={styles.numberInput}
-				maxLength={2}
-				keyboardType="number-pad"
-			/>
-			<View style={styles.buttonsConatiner}>
-				<PrimaryButton>Reset</PrimaryButton>
-				<PrimaryButton>Confirm</PrimaryButton>
+		<ImageBackground source={require("../assets/images/background.png")} style={styles.backgroundImage} resizeMode="cover" imageStyle={{ opacity: 0.15 }}>
+			<View style={styles.inputContainer}>
+				<TextInput
+					style={styles.numberInput}
+					maxLength={2}
+					keyboardType="number-pad"
+				/>
+				<View style={styles.buttonsConatiner}>
+					<PrimaryButton>Reset</PrimaryButton>
+					<PrimaryButton>Confirm</PrimaryButton>
+				</View>
 			</View>
-		</View>
+		</ImageBackground>
 	);
 }
 
 const styles = StyleSheet.create({
+	backgroundImage: {
+		flex: 1,
+		width: "100%",
+	},
 	inputContainer: {
 		alignItems: "center",
 		marginTop: 100,
 		marginHorizontal: 24,
 		padding: 16,
-		backgroundColor: "#4e0329",
+		backgroundColor: "#3b021f",
 		borderRadius: 8,
 		elevation: 4,
 		shadowColor: "black",

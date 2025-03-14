@@ -1,22 +1,24 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import { View, Text, StyleSheet } from 'react-native';
 
-export default function Game() {
-	return (
-		<View style={styles.container}>
-			<TextInput />
-			<Pressable>
-				<Text>Submit</Text>
-			</Pressable>
-			<StatusBar style="auto" />
-		</View>
-	);
+function GameScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text>Opponent's Guess</Text>
+      {/* GUESS */}
+      <View>
+        <Text>Higher or lower?</Text>
+        {/* + - */}
+      </View>
+      {/* <View>LOG ROUNDS</View> */}
+    </View>
+  );
 }
 
+export default GameScreen;
+
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-	},
+  screen: {
+    flex: 1,
+    padding: 24
+  }
 });

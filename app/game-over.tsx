@@ -4,8 +4,13 @@ import { router } from "expo-router";
 import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import { useStore } from "../store";
+
 
 function GameOverScreen() {
+  const chosenNumber = useStore((state) => state.chosenNumber);
+  const roundsNumber = useStore((state) => state.roundsNumber);
+
 	return (
 		<View style={styles.rootContainer}>
 			<Title>GAME OVER!</Title>
@@ -16,8 +21,8 @@ function GameOverScreen() {
 				/>
 			</View>
 			<Text style={styles.summaryText}>
-				Your phone needed <Text style={styles.highlight}>X</Text> rounds to
-				guess the number <Text style={styles.highlight}>Y</Text>.
+				Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to
+				guess the number <Text style={styles.highlight}>{chosenNumber}</Text>.
 			</Text>
 			<PrimaryButton onPress={() => router.push("/")}>
 				Start New Game

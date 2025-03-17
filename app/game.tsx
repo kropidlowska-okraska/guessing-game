@@ -21,6 +21,8 @@ let maxBoundary = 100;
 
 function GameScreen() {
 	const chosenNumber = useStore((state) => state.chosenNumber);
+	const updateRoundsNumber = useStore((state) => state.updateRoundsNumber);
+	const roundsNumber = useStore((state) => state.roundsNumber);
 	const initialGuess = generateRandomBetween(1, 100, chosenNumber);
 	const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
@@ -29,6 +31,11 @@ function GameScreen() {
 			router.push("/game-over");
 		}
 	}, [currentGuess, chosenNumber]);
+
+	useEffect(() => {
+		minBoundary = 1;
+		maxBoundary = 100;
+	  }, []);
 
 	function nextGuessHandler(direction: "lower" | "greater") {
 		if (
@@ -62,15 +69,27 @@ function GameScreen() {
 			<View>
 				<Text>Higher or lower?</Text>
 				<View style={styles.buttonsConatiner}>
-					<PrimaryButton onPress={() => nextGuessHandler("lower")}>
+					<PrimaryButton
+						onPress={() => {
+							nextGuessHandler("lower");
+							updateRoundsNumber();
+						}}
+					>
 						<Ionicons name="remove" size={24} color="white" />
 					</PrimaryButton>
-					<PrimaryButton onPress={() => nextGuessHandler("greater")}>
+					<PrimaryButton
+						onPress={() => {
+							nextGuessHandler("greater");
+							updateRoundsNumber();
+						}}
+					>
 						<Ionicons name="add" size={24} color="white" />
 					</PrimaryButton>
 				</View>
 			</View>
-			{/* <View>LOG ROUNDS</View> */}
+			<View>
+				<Text>{roundsNumber} ROUND</Text>
+			</View>
 		</View>
 	);
 }

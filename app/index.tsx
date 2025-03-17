@@ -4,6 +4,7 @@ import {
 	TextInput,
 	ImageBackground,
 	Alert,
+	useWindowDimensions,
 } from "react-native";
 import { useRouter } from "expo-router";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -20,6 +21,7 @@ export default function App() {
 	const router = useRouter();
 	const [number, setNumber] = useState("");
 	const updateChosenNumber = useStore((state) => state.updateChosenNumber);
+	const { height } = useWindowDimensions();
 
 	const onConfirm = () => {
 		if (!isValidNumber(number)) {
@@ -32,6 +34,8 @@ export default function App() {
 		router.navigate("/game");
 	};
 
+	const marginTopDistance = height < 600 ? 20 : 100;
+
 	return (
 		<ImageBackground
 			source={require("../assets/images/background.png")}
@@ -39,7 +43,7 @@ export default function App() {
 			resizeMode="cover"
 			imageStyle={{ opacity: 0.15 }}
 		>
-			<View style={styles.inputContainer}>
+			<View style={[styles.inputContainer, { margin: marginTopDistance }]}>
 				<TextInput
 					style={styles.numberInput}
 					maxLength={2}
@@ -64,7 +68,6 @@ const styles = StyleSheet.create({
 	inputContainer: {
 		justifyContent: "center",
 		alignItems: "center",
-		marginTop: 100,
 		marginHorizontal: 24,
 		padding: 16,
 		backgroundColor: Colors.primary800,

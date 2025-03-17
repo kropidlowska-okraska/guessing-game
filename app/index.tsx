@@ -39,14 +39,14 @@ export default function App() {
 	const marginTopDistance = height < 600 ? 20 : 100;
 
 	return (
-		<ScrollView style={{ flex: 1 }}>
-			<KeyboardAvoidingView style={{ flex: 1 }} behavior="position">
-				<ImageBackground
-					source={require("../assets/images/background.png")}
-					style={styles.backgroundImage}
-					resizeMode="cover"
-					imageStyle={{ opacity: 0.15 }}
-				>
+		<ImageBackground
+			source={require("../assets/images/background.png")}
+			style={styles.backgroundImage}
+			resizeMode="cover"
+			imageStyle={{ opacity: 0.15 }}
+		>
+			<ScrollView style={{ flex: 1 }}>
+				<KeyboardAvoidingView style={{ flex: 1 }} behavior="position">
 					<View style={[styles.inputContainer, { margin: marginTopDistance }]}>
 						<TextInput
 							style={styles.numberInput}
@@ -60,9 +60,9 @@ export default function App() {
 							<PrimaryButton onPress={onConfirm}>Confirm</PrimaryButton>
 						</View>
 					</View>
-				</ImageBackground>
-			</KeyboardAvoidingView>
-		</ScrollView>
+				</KeyboardAvoidingView>
+			</ScrollView>
+		</ImageBackground>
 	);
 }
 

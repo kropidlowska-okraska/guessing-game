@@ -5,6 +5,8 @@ import {
 	ImageBackground,
 	Alert,
 	useWindowDimensions,
+	KeyboardAvoidingView,
+	ScrollView,
 } from "react-native";
 import { useRouter } from "expo-router";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -37,26 +39,30 @@ export default function App() {
 	const marginTopDistance = height < 600 ? 20 : 100;
 
 	return (
-		<ImageBackground
-			source={require("../assets/images/background.png")}
-			style={styles.backgroundImage}
-			resizeMode="cover"
-			imageStyle={{ opacity: 0.15 }}
-		>
-			<View style={[styles.inputContainer, { margin: marginTopDistance }]}>
-				<TextInput
-					style={styles.numberInput}
-					maxLength={2}
-					keyboardType="number-pad"
-					value={number}
-					onChangeText={(text) => setNumber(text)}
-				/>
-				<View style={styles.buttonsConatiner}>
-					<PrimaryButton onPress={() => setNumber("")}>Reset</PrimaryButton>
-					<PrimaryButton onPress={onConfirm}>Confirm</PrimaryButton>
-				</View>
-			</View>
-		</ImageBackground>
+		<ScrollView style={{ flex: 1 }}>
+			<KeyboardAvoidingView style={{ flex: 1 }} behavior="position">
+				<ImageBackground
+					source={require("../assets/images/background.png")}
+					style={styles.backgroundImage}
+					resizeMode="cover"
+					imageStyle={{ opacity: 0.15 }}
+				>
+					<View style={[styles.inputContainer, { margin: marginTopDistance }]}>
+						<TextInput
+							style={styles.numberInput}
+							maxLength={2}
+							keyboardType="number-pad"
+							value={number}
+							onChangeText={(text) => setNumber(text)}
+						/>
+						<View style={styles.buttonsConatiner}>
+							<PrimaryButton onPress={() => setNumber("")}>Reset</PrimaryButton>
+							<PrimaryButton onPress={onConfirm}>Confirm</PrimaryButton>
+						</View>
+					</View>
+				</ImageBackground>
+			</KeyboardAvoidingView>
+		</ScrollView>
 	);
 }
 
